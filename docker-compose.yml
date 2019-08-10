@@ -1,0 +1,36 @@
+version: '3.7'
+
+volumes:
+  bundle_cache:
+  postgres:
+
+services:
+  postgres:
+    image: postgres:11.3-alpine
+    environment:
+      - POSTGRES_USER=tcc_caio
+      - POSTGRES_PASSWORD=tcc_caio
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+  encryptor:
+    build:
+      context: ./encryptor_umbrella
+    environment:
+      PGUSER: tcc_caio
+      PGPASSWORD: tcc_caio
+      PGPORT: 5432
+      PGHOST: postgres
+    volumes:
+      - ./encryptor_umbrella:/opt/app
+    ports:
+      - 4000:4000
+    depends_on:
+      - redis
+      - postgres
+
