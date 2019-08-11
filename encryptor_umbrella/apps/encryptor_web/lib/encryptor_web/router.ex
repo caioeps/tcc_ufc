@@ -5,7 +5,10 @@ defmodule EncryptorWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", EncryptorWeb do
+  scope "/api/v1/", EncryptorWeb.V1 do
     pipe_through :api
+
+    post "/encrypt", EncryptionController, :encrypt
+    post "/decrypt", DecryptionController, :decrypt
   end
 end

@@ -43,7 +43,8 @@ defmodule EncryptorWeb.MixProject do
       {:gettext, "~> 0.11"},
       {:encryptor, in_umbrella: true},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:statistics, "~> 0.5.0", only: [:test]}
     ]
   end
 
