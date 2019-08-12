@@ -20,17 +20,10 @@ services:
       - 5432:5432
     volumes:
       - postgres:/var/lib/postgresql/data
-  redis:
-    image: redis:alpine
-    networks:
-      - backend
-    ports:
-      - 6379:6379
   encryptor:
     build:
       context: ./encryptor_umbrella
     depends_on:
-      - redis
       - postgres
     environment:
       PGUSER: tcc_caio
@@ -43,4 +36,36 @@ services:
       - ./encryptor_umbrella:/opt/app
     ports:
       - 4000:4000
+  encryptor_backend_client:
+    build:
+      context: ./encryptor_backend_client
+    depends_on:
+      - postgres
+      - encryptor
+    environment:
+      PGUSER: tcc_caio
+      PGPASSWORD: tcc_caio
+      PGPORT: 5432
+      PGHOST: postgres
+    links:
+      - encryptor
+      - postgres
+    networks:
+      - backend
+    volumes:
+      - ./encryptor_backend_client:/opt/app
+    ports:
+      - 3000:3000
+  loadbalancer:
+    build: ./loadbalancer
+    tty: true
+    depends_on:
+      - encryptor_backend_client
+    networks:
+      - backend
+      - frontend
+    ports:
+      - 8000:8000
+
+
 

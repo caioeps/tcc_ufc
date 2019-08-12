@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+if [[ "$@" != "bundle update" ]]; then
+  bundle check || bundle install --binstubs="$BUNDLE_BIN"
+fi
+exec "$@"
