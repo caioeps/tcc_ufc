@@ -1,8 +1,8 @@
 version: '3.7'
 
 volumes:
-  bundle_cache:
-  postgres:
+  gems:
+  postgres_data:
 
 networks:
   backend:
@@ -19,7 +19,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
   encryptor:
     build:
       context: ./encryptor_umbrella
@@ -36,9 +36,9 @@ services:
       - ./encryptor_umbrella:/opt/app
     ports:
       - 4000:4000
-  encryptor_backend_client:
+  encryptor_client:
     build:
-      context: ./encryptor_backend_client
+      context: ./encryptor_client
     depends_on:
       - postgres
       - encryptor
@@ -53,19 +53,8 @@ services:
     networks:
       - backend
     volumes:
-      - ./encryptor_backend_client:/opt/app
+      - ./encryptor_client:/opt/app
+      - gems:/bundle
     ports:
       - 3000:3000
-  loadbalancer:
-    build: ./loadbalancer
-    tty: true
-    depends_on:
-      - encryptor_backend_client
-    networks:
-      - backend
-      - frontend
-    ports:
-      - 8000:8000
-
-
 
