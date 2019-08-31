@@ -5,13 +5,13 @@ ENV APP_DIR=/opt/app/
 WORKDIR ${APP_DIR}
 
 RUN apk update \
-    && apk add \
-    openssl \
-    tar \
-    build-base \
-    tzdata \
-    postgresql-dev \
-    postgresql-client
+    && apk add openssl \
+               tar \
+               build-base \
+               tzdata \
+               postgresql-dev \
+               postgresql-client \
+               bind-tools
 
 COPY . $APP_HOME
 

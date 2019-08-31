@@ -5,7 +5,14 @@ defmodule Encryptor.Umbrella.MixProject do
     [
       apps_path: "apps",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        encryptor_web: [
+          version: "1.0.0",
+          include_executables_for: [:unix],
+          applications: [encryptor_web: :permanent]
+        ]
+      ]
     ]
   end
 

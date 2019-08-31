@@ -37,11 +37,11 @@ defmodule EncryptorWeb.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:encryptor, in_umbrella: true},
       {:phoenix, "~> 1.4.9"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:gettext, "~> 0.11"},
-      {:encryptor, in_umbrella: true},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:statistics, "~> 0.5.0", only: [:test]}

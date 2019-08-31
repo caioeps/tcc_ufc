@@ -32,7 +32,7 @@ config :encryptor_web, EncryptorWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-#     config :encryptor_web, EncryptorWeb.Endpoint, server: true
+config :encryptor_web, EncryptorWeb.Endpoint, server: true
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.

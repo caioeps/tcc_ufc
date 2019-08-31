@@ -10,3 +10,10 @@ RUN mix archive.install hex phx_new 1.4.9 --force
 
 WORKDIR ${APP_DIR}
 
+COPY . ${APP_DIR}
+
+RUN mix local.hex --force
+
+RUN mix do compile
+
+CMD ["mix", "phx.server"]

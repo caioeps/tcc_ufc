@@ -10,5 +10,6 @@ defmodule EncryptorWeb.Router do
 
     post "/encrypt", EncryptionController, :encrypt
     post "/decrypt", DecryptionController, :decrypt
+    post "/secret/generate", SecretController, :generate
   end
 end

@@ -7,6 +7,7 @@ defmodule EncryptorWeb.V1.EncryptionController do
 
   def encrypt(conn, %{"message" => message, "key" => key}) do
     ciphertext = Encryptor.encrypt(message, key)
+                 |> IO.inspect
 
     conn
     |> put_view(EncryptionView)

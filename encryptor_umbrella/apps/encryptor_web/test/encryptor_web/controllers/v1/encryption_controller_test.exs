@@ -14,6 +14,17 @@ defmodule EncryptorWeb.V1.EncryptionControllerTest do
     assert "hey there" != ciphertext
   end
 
+  test 'it returns a ciphertext when passing a hardcoded key', %{conn: conn} do
+    params = %{message: "hey there", key: "MO0WT3c5zTjFUgdKAgooww=="}
+
+    json_body = post(conn, "/api/v1/encrypt", params)
+                |> json_response(200)
+
+    %{"ciphertext" => ciphertext} = json_body
+
+    assert "hey there" != ciphertext
+  end
+
   @tag :performance
   test "it is fast", %{conn: conn} do
     endpoint = "api/v1/encrypt"
