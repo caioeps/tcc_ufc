@@ -1,4 +1,4 @@
-defmodule EncryptorTcp do
+defmodule EncryptorTcp.Server do
   require Logger
 
   def accept(port) do
@@ -35,6 +35,7 @@ defmodule EncryptorTcp do
   end
 
   defp write_line(line, socket) do
-    :gen_tcp.send(socket, line)
+    response = EncryptorTcp.Protocol.handle_data(line)
+    :gen_tcp.send(socket, response)
   end
 end

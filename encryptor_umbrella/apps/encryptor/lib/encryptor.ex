@@ -9,7 +9,7 @@ defmodule Encryptor do
     iv = :crypto.strong_rand_bytes(16)
     {ciphertext, tag} =
       :crypto.block_encrypt(:aes_gcm, decode_key(key), iv, {@aad, to_string(message), 16})
-    (iv <> tag <> ciphertext) |> :base64.encode
+    :base64.encode(iv <> tag <> ciphertext)
   end
 
   def decrypt(ciphertext, key) do
