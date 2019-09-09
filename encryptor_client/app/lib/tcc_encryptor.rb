@@ -16,26 +16,28 @@ class TccEncryptor
   class Client
     include Singleton
 
-    ENCRYPT_URL = ENV.fetch('ENCRYPTOR_URL') + '/api/v1/encrypt'
-    DECRYPT_URL = ENV.fetch('ENCRYPTOR_URL') + '/api/v1/decrypt'
-
     def initialize
-      @client = HTTPClient.new
+      @client = TCPSocket.new ENV.fetch('ENCRYPTOR_URL'), 4444
     end
 
     def encrypt(key, value)
-      response = nil
+      request = "action:encrypt;key:#{key};data:#{value}"
+      encrypted_value = nil
       puts (Benchmark.ms do
-        response = @client.post(ENCRYPT_URL, body: { key: key, message: value })
+        @client.write(request)
+        encrypted_value = @client.read_nonblock(request)
       end)
-      body = JSON.parse(response.body)
-      body['ciphertext']
+      encrypted_value
     end
 
     def decrypt(key, value)
-      response = @client.post(DECRYPT_URL, body: { key: key, ciphertext: value })
-      body = JSON.parse(response.body)
-      body['decrypted_message']
+      request = "action:decrypt;key:#{key};data:#{value}"
+      decrypted_value = nil
+      puts (Benchmark.ms do
+        @client.write(request)
+        decrypted_value = @client.read_nonblock(request)
+      end)
+      decrypted_value
     end
   end
 end

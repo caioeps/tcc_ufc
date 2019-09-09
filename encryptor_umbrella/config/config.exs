@@ -17,6 +17,9 @@ config :encryptor_web,
   ecto_repos: [Encryptor.Repo],
   generators: [context_app: :encryptor]
 
+config :encryptor_tcp, :server,
+  port: String.to_integer(System.get_env("TCP_PORT") || "4444")
+
 # Configures the endpoint
 config :encryptor_web, EncryptorWeb.Endpoint,
   url: [host: "localhost"],
