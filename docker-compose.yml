@@ -12,39 +12,32 @@ services:
       - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  encryptor:
+  remote_encryptor:
     build:
-      context: ./encryptor_umbrella
-    depends_on:
-      - postgres
-    environment:
-      PGUSER: tcc_caio
-      PGPASSWORD: tcc_caio
-      PGPORT: 5432
-      PGHOST: postgres
-      ENCRYPTOR_URL: encryptor
-      DATABASE_URL: postgres://tcc_caio:tcc_caio@postgres:5432/encryptor_dev
-      SECRET_KEY_BASE: encryptor_dev
+      context: ./remote_encryptor
     networks:
       - backend
     volumes:
-      - ./encryptor_umbrella:/opt/app
+      - ./remote_encryptor:/opt/app
+    environment:
+      TCP_PORT: 4444
     ports:
-      - 4000:4000
+      - 4444:4444
   encryptor_client:
     build:
       context: ./encryptor_client
     depends_on:
       - postgres
-      - encryptor
+      - remote_encryptor
     environment:
       PGUSER: tcc_caio
       PGPASSWORD: tcc_caio
       PGPORT: 5432
       PGHOST: postgres
-      ENCRYPTOR_URL: http://encryptor:4000
+      ENCRYPTOR_HOST: remote_encryptor
+      ENCRYPTOR_PORT: 4444
     links:
-      - encryptor
+      - remote_encryptor
       - postgres
     networks:
       - backend

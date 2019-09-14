@@ -17,15 +17,15 @@ class TccEncryptor
     include Singleton
 
     def initialize
-      @client = TCPSocket.new ENV.fetch('ENCRYPTOR_URL'), 4444
+      @client = TCPSocket.new ENV.fetch('ENCRYPTOR_HOST'), ENV.fetch('ENCRYPTOR_PORT')
     end
 
     def encrypt(key, value)
       request = "action:encrypt;key:#{key};data:#{value}"
       encrypted_value = nil
       puts (Benchmark.ms do
-        @client.write(request)
-        encrypted_value = @client.read_nonblock(request)
+        write(request)
+        encrypted_value = read
       end)
       encrypted_value
     end
@@ -34,10 +34,30 @@ class TccEncryptor
       request = "action:decrypt;key:#{key};data:#{value}"
       decrypted_value = nil
       puts (Benchmark.ms do
-        @client.write(request)
-        decrypted_value = @client.read_nonblock(request)
+        write(request)
+        decrypted_value = read
       end)
       decrypted_value
+    end
+
+    def write(request)
+      @client.write_nonblock(request)
+    rescue IO::WaitReadable
+      IO.select([@client])
+      retry
+    rescue IO::WaitWritable
+      IO.select(nil, [@client])
+      retry
+    end
+
+    def read
+      @client.read_nonblock(8192)
+    rescue IO::WaitReadable
+      IO.select([@client])
+      retry
+    rescue IO::WaitWritable
+      IO.select(nil, [@client])
+      retry
     end
   end
 end
