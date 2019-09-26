@@ -40,24 +40,30 @@ class TccEncryptor
       decrypted_value
     end
 
+    private
+
     def write(request)
-      @client.write_nonblock(request)
-    rescue IO::WaitReadable
-      IO.select([@client])
-      retry
-    rescue IO::WaitWritable
-      IO.select(nil, [@client])
-      retry
+      tcp_operation do
+        @client.write_nonblock(request)
+      end
     end
 
     def read
-      @client.read_nonblock(8192)
+      tcp_operation do
+        @client.read_nonblock(8192)
+      end
+    end
+
+    def tcp_operation
+      yield
     rescue IO::WaitReadable
       IO.select([@client])
       retry
     rescue IO::WaitWritable
       IO.select(nil, [@client])
       retry
+    rescue Errno::EPIPE
+      @client = TCPSocket.new ENV.fetch('ENCRYPTOR_HOST'), ENV.fetch('ENCRYPTOR_PORT')
     end
   end
 end
