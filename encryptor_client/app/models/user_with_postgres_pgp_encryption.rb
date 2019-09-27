@@ -1,0 +1,2 @@
+class UserWithPostgresPgpEncryption < ApplicationRecord
+end

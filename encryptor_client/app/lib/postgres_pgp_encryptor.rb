@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TccEncryptor
+class RemoteEncryptor
   class << self
     def encrypt(options)
       client = Client.instance

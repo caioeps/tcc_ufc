@@ -1,0 +1,2 @@
+class UserWithLocalEncryption < ApplicationRecord
+end

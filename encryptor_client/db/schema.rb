@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_113557) do
+ActiveRecord::Schema.define(version: 2019_09_27_024321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "user_with_local_encryptions", force: :cascade do |t|
+    t.string "name"
+    t.citext "email", null: false
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_user_with_local_encryptions_on_email", unique: true
+  end
+
+  create_table "user_with_postgres_pgp_encryptions", force: :cascade do |t|
+    t.string "name"
+    t.citext "email", null: false
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_user_with_postgres_pgp_encryptions_on_email", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
