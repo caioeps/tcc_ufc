@@ -1,0 +1,32 @@
+{
+  "Users with PG PGP Encryption" : {
+    "transaction" : "Users with PG PGP Encryption",
+    "sampleCount" : 1387,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 415.4513338139868,
+    "minResTime" : 57.0,
+    "maxResTime" : 674.0,
+    "pct1ResTime" : 552.2,
+    "pct2ResTime" : 576.0,
+    "pct3ResTime" : 635.0,
+    "throughput" : 23.013107682097232,
+    "receivedKBytesPerSec" : 808.7399346171395,
+    "sentKBytesPerSec" : 3.61827181329849
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 1387,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 415.4513338139868,
+    "minResTime" : 57.0,
+    "maxResTime" : 674.0,
+    "pct1ResTime" : 552.2,
+    "pct2ResTime" : 576.0,
+    "pct3ResTime" : 635.0,
+    "throughput" : 23.013107682097232,
+    "receivedKBytesPerSec" : 808.7399346171395,
+    "sentKBytesPerSec" : 3.61827181329849
+  }
+}

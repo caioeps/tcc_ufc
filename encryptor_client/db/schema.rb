@@ -18,27 +18,33 @@ ActiveRecord::Schema.define(version: 2019_09_27_024321) do
   enable_extension "plpgsql"
 
   create_table "user_with_local_encryptions", force: :cascade do |t|
-    t.string "name"
+    t.string "encrypted_name"
     t.citext "email", null: false
-    t.string "address"
+    t.string "encrypted_address"
+    t.text "encrypted_name_iv"
+    t.text "encrypted_address_iv"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_user_with_local_encryptions_on_email", unique: true
   end
 
   create_table "user_with_postgres_pgp_encryptions", force: :cascade do |t|
-    t.string "name"
+    t.string "encrypted_name"
     t.citext "email", null: false
-    t.string "address"
+    t.string "encrypted_address"
+    t.text "encrypted_name_iv"
+    t.text "encrypted_address_iv"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_user_with_postgres_pgp_encryptions_on_email", unique: true
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "encrypted_name"
     t.citext "email", null: false
-    t.string "address"
+    t.string "encrypted_address"
+    t.text "encrypted_name_iv"
+    t.text "encrypted_address_iv"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

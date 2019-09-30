@@ -1,69 +1,40 @@
 # frozen_string_literal: true
 
-class RemoteEncryptor
+class PostgresPgpEncryptor
   class << self
     def encrypt(options)
       client = Client.instance
-      client.encrypt(options[:secret_key], options[:value])
+      client.encrypt(options[:key], options[:value])
     end
 
     def decrypt(options)
       client = Client.instance
-      client.decrypt(options[:secret_key], options[:value])
+      client.decrypt(options[:key], options[:value])
     end
   end
 
   class Client
     include Singleton
 
-    def initialize
-      @client = TCPSocket.new ENV.fetch('ENCRYPTOR_HOST'), ENV.fetch('ENCRYPTOR_PORT')
-    end
+    ENCRYPT_SQL = 'SELECT pgp_sym_encrypt(%s, %s, %s) as value'
+    DECRYPT_SQL = 'SELECT pgp_sym_decrypt(%s, %s, %s) as value'
 
     def encrypt(key, value)
-      request = "action:encrypt;key:#{key};data:#{value}"
-      encrypted_value = nil
-      puts (Benchmark.ms do
-        write(request)
-        encrypted_value = read
-      end)
-      encrypted_value
+      execute_sql(ENCRYPT_SQL, [value, key, ''])
     end
 
     def decrypt(key, value)
-      request = "action:decrypt;key:#{key};data:#{value}"
-      decrypted_value = nil
-      puts (Benchmark.ms do
-        write(request)
-        decrypted_value = read
-      end)
-      decrypted_value
+      execute_sql(DECRYPT_SQL, [value, key, ''])
     end
 
     private
 
-    def write(request)
-      tcp_operation do
-        @client.write_nonblock(request)
-      end
+    def execute_sql(sql, binds)
+      ApplicationRecord.connection.execute(sanitize_sql(sql, binds)).first['value']
     end
 
-    def read
-      tcp_operation do
-        @client.read_nonblock(8192)
-      end
-    end
-
-    def tcp_operation
-      yield
-    rescue IO::WaitReadable
-      IO.select([@client])
-      retry
-    rescue IO::WaitWritable
-      IO.select(nil, [@client])
-      retry
-    rescue Errno::EPIPE
-      @client = TCPSocket.new ENV.fetch('ENCRYPTOR_HOST'), ENV.fetch('ENCRYPTOR_PORT')
+    def sanitize_sql(sql, binds)
+      sql % binds.map { |value| ActiveRecord::Base.connection.quote(value) }
     end
   end
 end

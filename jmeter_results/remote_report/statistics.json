@@ -1,0 +1,32 @@
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 3704,
+    "errorCount" : 8,
+    "errorPct" : 0.21598272,
+    "meanResTime" : 165.62257019438425,
+    "minResTime" : 62.0,
+    "maxResTime" : 5005.0,
+    "pct1ResTime" : 192.0,
+    "pct2ResTime" : 210.75,
+    "pct3ResTime" : 257.84999999999945,
+    "throughput" : 57.04780680137999,
+    "receivedKBytesPerSec" : 1266.9986820737972,
+    "sentKBytesPerSec" : 7.560297560374569
+  },
+  "Users with TCP encryption" : {
+    "transaction" : "Users with TCP encryption",
+    "sampleCount" : 3704,
+    "errorCount" : 8,
+    "errorPct" : 0.21598272,
+    "meanResTime" : 165.62257019438425,
+    "minResTime" : 62.0,
+    "maxResTime" : 5005.0,
+    "pct1ResTime" : 192.0,
+    "pct2ResTime" : 210.75,
+    "pct3ResTime" : 257.84999999999945,
+    "throughput" : 57.04780680137999,
+    "receivedKBytesPerSec" : 1266.9986820737972,
+    "sentKBytesPerSec" : 7.560297560374569
+  }
+}

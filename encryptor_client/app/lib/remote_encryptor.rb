@@ -4,12 +4,12 @@ class RemoteEncryptor
   class << self
     def encrypt(options)
       client = Client.instance
-      client.encrypt(options[:secret_key], options[:value])
+      client.encrypt(options[:key], options[:value])
     end
 
     def decrypt(options)
       client = Client.instance
-      client.decrypt(options[:secret_key], options[:value])
+      client.decrypt(options[:key], options[:value])
     end
   end
 
@@ -22,21 +22,15 @@ class RemoteEncryptor
 
     def encrypt(key, value)
       request = "action:encrypt;key:#{key};data:#{value}"
-      encrypted_value = nil
-      puts (Benchmark.ms do
-        write(request)
-        encrypted_value = read
-      end)
+      write(request)
+      encrypted_value = read
       encrypted_value
     end
 
     def decrypt(key, value)
       request = "action:decrypt;key:#{key};data:#{value}"
-      decrypted_value = nil
-      puts (Benchmark.ms do
-        write(request)
-        decrypted_value = read
-      end)
+      write(request)
+      decrypted_value = read
       decrypted_value
     end
 

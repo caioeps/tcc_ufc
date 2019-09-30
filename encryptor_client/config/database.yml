@@ -9,7 +9,9 @@ default: &default
 
 development:
   <<: *default
-  database: encryptor_client_development
+  database: encryptor_client_development_small
+  <%#database: encryptor_client_development_medium%>
+  <%#database: encryptor_client_development_large%>
 
 test:
   <<: *default

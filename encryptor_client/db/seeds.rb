@@ -1,7 +1,24 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+n = case Rails.configuration.database_configuration["development"]["database"]
+    when /small$/
+      50
+    when /medium$/
+      500
+    when /large$/
+      1000
+    end
+
+names     = n.times.map { |i| "User ##{i}" }
+emails    = n.times.map { |i| "email.#{i}@email.com" }
+addresses = n.times.map { |i| "User Address #{i}" }
+
+values = names.zip(emails, addresses)
+
+models = [User, UserWithLocalEncryption, UserWithPostgresPgpEncryption]
+
+ApplicationRecord.transaction do
+  values.each do |name, email, address|
+    models.map do |model|
+      model.create!(name: name, email: email, address: address)
+    end
+  end
+end

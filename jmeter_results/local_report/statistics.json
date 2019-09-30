@@ -1,0 +1,32 @@
+{
+  "Users with local encryption" : {
+    "transaction" : "Users with local encryption",
+    "sampleCount" : 7704,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 74.49441848390458,
+    "minResTime" : 10.0,
+    "maxResTime" : 192.0,
+    "pct1ResTime" : 106.0,
+    "pct2ResTime" : 117.0,
+    "pct3ResTime" : 139.0,
+    "throughput" : 128.31445702864758,
+    "receivedKBytesPerSec" : 2278.8346831279146,
+    "sentKBytesPerSec" : 19.422598476015988
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 7704,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 74.49441848390458,
+    "minResTime" : 10.0,
+    "maxResTime" : 192.0,
+    "pct1ResTime" : 106.0,
+    "pct2ResTime" : 117.0,
+    "pct3ResTime" : 139.0,
+    "throughput" : 128.31445702864758,
+    "receivedKBytesPerSec" : 2278.8346831279146,
+    "sentKBytesPerSec" : 19.422598476015988
+  }
+}

@@ -15,6 +15,11 @@ services:
   remote_encryptor:
     build:
       context: ./remote_encryptor
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512m
     networks:
       - backend
     volumes:
@@ -29,6 +34,11 @@ services:
     depends_on:
       - postgres
       - remote_encryptor
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1g
     environment:
       PGUSER: tcc_caio
       PGPASSWORD: tcc_caio
@@ -36,6 +46,7 @@ services:
       PGHOST: postgres
       ENCRYPTOR_HOST: remote_encryptor
       ENCRYPTOR_PORT: 4444
+      WEB_CONCURRENCY: 2
     links:
       - remote_encryptor
       - postgres
