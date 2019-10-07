@@ -133,7 +133,7 @@ $(document).ready(function() {
         widgets: ['zebra']
     });
 
-    var data = {"OkPercent": 99.74188790560471, "KoPercent": 0.2581120943952802};
+    var data = {"OkPercent": 100.0, "KoPercent": 0.0};
     var dataset = [
         {
             "label" : "KO",
@@ -173,7 +173,7 @@ $(document).ready(function() {
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.6331120943952803, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.7701279157261098, 500, 1500, "Users with local encryption"], "isController": false}, {"data": [0.5691220988900101, 500, 1500, "Users with PG PGP Encryption"], "isController": false}, {"data": [0.33035714285714285, 500, 1500, "Users with TCP encryption"], "isController": false}]}, function(index, item){
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.8055960361410668, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.950592885375494, 500, 1500, "Users with local encryption"], "isController": false}, {"data": [0.5052160953800298, 500, 1500, "Users with PG PGP Encryption"], "isController": false}, {"data": [0.7906602254428341, 500, 1500, "Users with TCP encryption"], "isController": false}]}, function(index, item){
         switch(index){
             case 0:
                 item = item.toFixed(3);
@@ -187,7 +187,7 @@ $(document).ready(function() {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 2712, 7, 0.2581120943952802, 649.2142330383491, 15, 5007, 1066.1000000000008, 1700.6999999999998, 3018.1399999999976, 41.81700434822832, 1033.3059250152264, 6.292770347626978], "isController": false}, "titles": ["Label", "#Samples", "KO", "Error %", "Average", "Min", "Max", "90th pct", "95th pct", "99th pct", "Transactions\/s", "Received", "Sent"], "items": [{"data": ["Users with local encryption", 1329, 0, 0.0, 434.56734386756983, 15, 737, 589.0, 607.0, 656.7, 22.01096407691416, 390.90956318629, 3.33173772648603], "isController": false}, {"data": ["Users with PG PGP Encryption", 991, 0, 0.0, 583.0686175580227, 130, 821, 691.0, 720.4, 766.3200000000002, 16.37664634045577, 575.5175734449623, 2.5748438093880655], "isController": false}, {"data": ["Users with TCP encryption", 392, 7, 1.7857142857142858, 1544.1530612244915, 29, 5007, 2836.2, 3300.199999999998, 5006.0, 6.044345761248342, 132.37424096335616, 0.7884295879976563], "isController": false}]}, function(index, item){
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 3431, 0, 0.0, 504.8971145438651, 14, 1272, 866.0, 962.0, 1091.3599999999997, 56.712618598961946, 1292.2232126991803, 8.268497124904956], "isController": false}, "titles": ["Label", "#Samples", "KO", "Error %", "Average", "Min", "Max", "90th pct", "95th pct", "99th pct", "Transactions\/s", "Received", "Sent"], "items": [{"data": ["Users with local encryption", 1518, 0, 0.0, 379.31422924901227, 14, 616, 499.10000000000014, 523.05, 577.81, 25.129953978081648, 446.30209281776644, 3.8038504556666557], "isController": false}, {"data": ["Users with PG PGP Encryption", 671, 0, 0.0, 862.8733233979141, 171, 1272, 1035.0, 1092.4, 1170.12, 11.091275744652716, 389.7760243623756, 1.7438431590713743], "isController": false}, {"data": ["Users with TCP encryption", 1242, 0, 0.0, 464.9879227053134, 30, 737, 590.0, 612.8499999999999, 673.5699999999999, 20.544206434538086, 457.1487185716649, 2.7285274170870895], "isController": false}]}, function(index, item){
         switch(index){
             // Errors pct
             case 3:
@@ -215,7 +215,7 @@ $(document).ready(function() {
     }, [[0, 0]], 0, summaryTableHeader);
 
     // Create error table
-    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": [{"data": ["Non HTTP response code: java.net.SocketTimeoutException\/Non HTTP response message: Read timed out", 7, 100.0, 0.2581120943952802], "isController": false}]}, function(index, item){
+    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": []}, function(index, item){
         switch(index){
             case 2:
             case 3:
@@ -226,7 +226,7 @@ $(document).ready(function() {
     }, [[1, 1]]);
 
         // Create top5 errors by sampler
-    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 2712, 7, "Non HTTP response code: java.net.SocketTimeoutException\/Non HTTP response message: Read timed out", 7, null, null, null, null, null, null, null, null], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": [], "isController": false}, {"data": [], "isController": false}, {"data": ["Users with TCP encryption", 392, 7, "Non HTTP response code: java.net.SocketTimeoutException\/Non HTTP response message: Read timed out", 7, null, null, null, null, null, null, null, null], "isController": false}]}, function(index, item){
+    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 3431, 0, null, null, null, null, null, null, null, null, null, null], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": [], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}]}, function(index, item){
         return item;
     }, [[0, 0]], 0);
 

@@ -3,19 +3,27 @@
 class RemoteEncryptor
   class << self
     def encrypt(options)
-      client = Client.instance
-      client.encrypt(options[:key], options[:value])
+      conn_pool.with do |client|
+        client.encrypt(options[:key], options[:value])
+      end
     end
 
     def decrypt(options)
-      client = Client.instance
-      client.decrypt(options[:key], options[:value])
+      conn_pool.with do |client|
+        client.decrypt(options[:key], options[:value])
+      end
+    end
+
+    private
+
+    def conn_pool
+      @pool ||= ConnectionPool.new(size: ENV.fetch('RAILS_MAX_THREADS', 5), timeout: 5) do
+        Client.new
+      end
     end
   end
 
   class Client
-    include Singleton
-
     def initialize
       @client = TCPSocket.new ENV.fetch('ENCRYPTOR_HOST'), ENV.fetch('ENCRYPTOR_PORT')
     end
