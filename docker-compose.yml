@@ -47,20 +47,6 @@ services:
       - gems:/bundle
     ports:
       - 3000:3000
-  web:
-    image: nginx
-    volumes:
-     - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - 80:80
-    networks:
-      - frontend
-      - backend
-    environment:
-      NGINX_HOST: my_ip
-      NGINX_PORT: 80
-    depends_on:
-      - encryptor_client
 volumes:
   gems:
   postgres_data:

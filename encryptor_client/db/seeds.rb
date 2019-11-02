@@ -1,4 +1,6 @@
 n = case Rails.configuration.database_configuration["development"]["database"]
+    when /_production/
+      50
     when /small$/
       50
     when /medium$/

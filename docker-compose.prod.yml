@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  encryptor_client:
+    build:
+      context: ./encryptor_client
+    environment:
+      RAILS_ENV: production
+      ENCRYPTOR_HOST: 3.210.75.103
+      ENCRYPTOR_PORT: 4444
+      WEB_CONCURRENCY: 2
+      RAILS_MAX_THREADS: 5
+    networks:
+      - backend
+    volumes:
+      - ./encryptor_client:/opt/app
+      - gems:/bundle
+    ports:
+      - 3000:3000
+  web:
+    image: nginx
+    volumes:
+     - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+    networks:
+      - frontend
+      - backend
+    environment:
+      NGINX_HOST: my_ip
+      NGINX_PORT: 80
+    depends_on:
+      - encryptor_client
+volumes:
+  gems:
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge
