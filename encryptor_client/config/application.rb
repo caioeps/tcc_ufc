@@ -42,5 +42,9 @@ module EncryptorClient
     end
 
     config.autoload_paths += Dir[Rails.root.join('app', 'lib')]
+
+    config.hosts += %w[
+      encryptor_client
+    ]
   end
 end

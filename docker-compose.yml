@@ -15,11 +15,6 @@ services:
   remote_encryptor:
     build:
       context: ./remote_encryptor
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 512m
     networks:
       - backend
     volumes:
@@ -34,11 +29,6 @@ services:
     depends_on:
       - postgres
       - remote_encryptor
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 1g
     environment:
       PGUSER: tcc_caio
       PGPASSWORD: tcc_caio
@@ -57,11 +47,25 @@ services:
       - gems:/bundle
     ports:
       - 3000:3000
-
+  web:
+    image: nginx
+    volumes:
+     - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+    networks:
+      - frontend
+      - backend
+    environment:
+      NGINX_HOST: my_ip
+      NGINX_PORT: 80
+    depends_on:
+      - encryptor_client
 volumes:
   gems:
   postgres_data:
-
 networks:
   backend:
+    driver: bridge
+  frontend:
     driver: bridge
