@@ -45,6 +45,7 @@ module EncryptorClient
 
     config.hosts += %w[
       encryptor_client
+      52.22.92.42
     ]
   end
 end
