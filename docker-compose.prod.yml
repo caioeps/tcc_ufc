@@ -6,6 +6,7 @@ services:
       context: ./encryptor_client
     environment:
       RAILS_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
       ENCRYPTOR_HOST: 3.210.75.103
       ENCRYPTOR_PORT: 4444
       WEB_CONCURRENCY: 2
