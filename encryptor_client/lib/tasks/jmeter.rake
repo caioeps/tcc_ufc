@@ -17,21 +17,21 @@ namespace :jmeter do
           visit name: 'Users with local encryption',
                 url: 'http://localhost:3000/users?user_class=UserWithLocalEncryption',
                 connect_timeout: '1000',
-                response_timeout: '5000'
+                response_timeout: '10000'
         end
 
         threads name: 'Postgres PGP', count: 10, loops: 500 do
           visit name: 'Users with PG PGP Encryption',
                 url: 'http://localhost:3000/users?user_class=UserWithPostgresPgpEncryption',
                 connect_timeout: '1000',
-                response_timeout: '5000'
+                response_timeout: '10000'
         end
 
         threads name: 'Remote Encryptor', count: 10, loops: 500 do
           visit name: 'Users with TCP encryption',
                 url: 'http://localhost:3000/users?user_class=User',
                 connect_timeout: '1000',
-                response_timeout: '5000'
+                response_timeout: '10000'
         end
       end.jmx(file: Rails.root.join('aggregated_test_plan.jmx'))
     end

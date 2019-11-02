@@ -19,8 +19,8 @@
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">5</stringProp>
-        <longProp name="ThreadGroup.start_time">1569818095000</longProp>
-        <longProp name="ThreadGroup.end_time">1569818095000</longProp>
+        <longProp name="ThreadGroup.start_time">1572147542000</longProp>
+        <longProp name="ThreadGroup.end_time">1572147542000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">60</stringProp>
         <stringProp name="ThreadGroup.delay"/>
@@ -42,7 +42,7 @@
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">3000</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">1000</stringProp>
-          <stringProp name="HTTPSampler.response_timeout">5000</stringProp>
+          <stringProp name="HTTPSampler.response_timeout">10000</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"/>
           <stringProp name="HTTPSampler.path">/users</stringProp>
@@ -64,8 +64,8 @@
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">5</stringProp>
-        <longProp name="ThreadGroup.start_time">1569818095000</longProp>
-        <longProp name="ThreadGroup.end_time">1569818095000</longProp>
+        <longProp name="ThreadGroup.start_time">1572147542000</longProp>
+        <longProp name="ThreadGroup.end_time">1572147542000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">60</stringProp>
         <stringProp name="ThreadGroup.delay"/>
@@ -87,7 +87,7 @@
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">3000</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">1000</stringProp>
-          <stringProp name="HTTPSampler.response_timeout">5000</stringProp>
+          <stringProp name="HTTPSampler.response_timeout">10000</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"/>
           <stringProp name="HTTPSampler.path">/users</stringProp>
@@ -109,8 +109,8 @@
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">5</stringProp>
-        <longProp name="ThreadGroup.start_time">1569818095000</longProp>
-        <longProp name="ThreadGroup.end_time">1569818095000</longProp>
+        <longProp name="ThreadGroup.start_time">1572147542000</longProp>
+        <longProp name="ThreadGroup.end_time">1572147542000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">60</stringProp>
         <stringProp name="ThreadGroup.delay"/>
@@ -132,7 +132,7 @@
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">3000</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">1000</stringProp>
-          <stringProp name="HTTPSampler.response_timeout">5000</stringProp>
+          <stringProp name="HTTPSampler.response_timeout">10000</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"/>
           <stringProp name="HTTPSampler.path">/users</stringProp>

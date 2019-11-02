@@ -4,13 +4,13 @@ export timestamp=$(date +%Y%m%d_%H%M%S)
 
 docker-compose run encryptor_client rails jmeter:generate_test_plan
 
-jmeter -n -f \
-  -t encryptor_client/aggregated_test_plan.jmx \
-  -l jmeter_results/aggregated/result.jtl \
-  -j jmeter_results/aggregated/jmeter.log \
-  -o jmeter_results/aggregated
+#jmeter -n -f \
+  #-t encryptor_client/aggregated_test_plan.jmx \
+  #-l jmeter_results/aggregated/result.jtl \
+  #-j jmeter_results/aggregated/jmeter.log \
+  #-o jmeter_results/aggregated
 
-exit 0
+#exit 0
 
 echo 'Benchmarking LOCAL'
 jmeter -n -f \

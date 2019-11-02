@@ -29,4 +29,4 @@ RUN bundle install --binstubs="$BUNDLE_BIN"
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-p", "3000", "-b", "0.0.0.0"]

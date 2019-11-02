@@ -1,0 +1,62 @@
+{
+  "Users with local encryption" : {
+    "transaction" : "Users with local encryption",
+    "sampleCount" : 8260,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 69.43438256658642,
+    "minResTime" : 12.0,
+    "maxResTime" : 340.0,
+    "pct1ResTime" : 89.0,
+    "pct2ResTime" : 99.0,
+    "pct3ResTime" : 131.0,
+    "throughput" : 137.70109193965158,
+    "receivedKBytesPerSec" : 2445.5391191547888,
+    "sentKBytesPerSec" : 20.84342700258398
+  },
+  "Users with PG PGP Encryption" : {
+    "transaction" : "Users with PG PGP Encryption",
+    "sampleCount" : 1882,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 305.72157279489977,
+    "minResTime" : 70.0,
+    "maxResTime" : 786.0,
+    "pct1ResTime" : 354.0,
+    "pct2ResTime" : 372.0,
+    "pct3ResTime" : 422.5500000000011,
+    "throughput" : 31.312912832970067,
+    "receivedKBytesPerSec" : 1100.4164855539657,
+    "sentKBytesPerSec" : 4.9232216465900205
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 14508,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 118.76509511993399,
+    "minResTime" : 12.0,
+    "maxResTime" : 786.0,
+    "pct1ResTime" : 292.10000000000036,
+    "pct2ResTime" : 316.0,
+    "pct3ResTime" : 364.0,
+    "throughput" : 79.41321364059336,
+    "receivedKBytesPerSec" : 1696.7870350730745,
+    "sentKBytesPerSec" : 11.63748828274673
+  },
+  "Users with TCP encryption" : {
+    "transaction" : "Users with TCP encryption",
+    "sampleCount" : 4366,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 131.50435180943632,
+    "minResTime" : 25.0,
+    "maxResTime" : 570.0,
+    "pct1ResTime" : 153.0,
+    "pct2ResTime" : 169.0,
+    "pct3ResTime" : 220.0,
+    "throughput" : 72.75211624341799,
+    "receivedKBytesPerSec" : 1618.876680393088,
+    "sentKBytesPerSec" : 9.662390438578951
+  }
+}

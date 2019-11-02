@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require 'csv'
+require 'byebug'
+
+puts 'Aggregating results files...'
+
+dir = File.dirname(__FILE__)
+
+local  = CSV.read("#{dir}/local/result.jtl", headers: true)
+remote = CSV.read("#{dir}/remote/result.jtl", headers: true)
+pgp    = CSV.read("#{dir}/pgp/result.jtl", headers: true)
+
+aggregated = CSV.generate do |csv|
+  csv << local.headers
+
+  [local, pgp, remote].each do |report|
+    report.each do |row|
+      csv << row
+    end
+  end
+end
+
+File.open("#{dir}/aggregated/result.jtl", 'w') do |file|
+  file.write(aggregated)
+end
+
+puts 'Done!'
