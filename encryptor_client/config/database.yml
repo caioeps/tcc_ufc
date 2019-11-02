@@ -19,5 +19,4 @@ test:
 
 production:
   <<: *default
-  database: encryptor_client_production
   url: <%= ENV['DATABASE_URL'] %>
