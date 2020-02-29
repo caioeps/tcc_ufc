@@ -13,7 +13,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday', '~> 0.15.4'
 gem 'httpclient', '~> 2.8.3'
 gem 'oj'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 
